@@ -58,6 +58,12 @@ public Actor(String firstName, String lastName, List<Film> films) {
 	this.films = films;
 }
 
+public void printCast() {
+	
+	
+	System.out.println("Id # " + this.id + " : " + this.firstName + " " + this.lastName);
+}
+
 @Override
 public String toString() {
 	return "Actor [firstName=" + firstName + ", lastName=" + lastName + ", films=" + films + "]";

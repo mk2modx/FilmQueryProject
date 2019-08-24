@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
+import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
@@ -50,14 +51,18 @@ public class FilmQueryApp {
     	System.out.println("Enter film id 1-1000");
     	int filmId = kb.nextInt();
     	Film film = db.findFilmById(filmId);
-    	System.out.println(film);
+    	film.filmDetails();
+    	List<Actor> actors = db.findActorsByFilmId(filmId);
+    	for (Actor actor : actors) {
+			actor.printCast();
+		}
     	break;
     case 2:
     	System.out.println("Enter keyword");
     	String keyWord = kb.next();
     	List<Film> films = db.searchByKeyword(keyWord);
     for (Film film2 : films) {
-    	System.out.println(film2);
+        film2.filmDetails();
 		
 	}
     	break;

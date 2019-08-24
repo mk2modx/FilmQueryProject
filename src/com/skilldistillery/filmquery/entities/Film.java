@@ -2,6 +2,9 @@ package com.skilldistillery.filmquery.entities;
 
 import java.util.List;
 
+import com.skilldistillery.filmquery.database.DatabaseAccessor;
+import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
+
 public class Film {
 	private int id;
 	private String title;
@@ -15,8 +18,8 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	public Film() {
-		
 	}
+	DatabaseAccessor db = new DatabaseAccessorObject();
 	
 	public Film(int id, String title, String description, int year, String languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
@@ -158,6 +161,14 @@ public class Film {
 
 	public void setSpecialFeatures(String specialFeatures) {
 		this.specialFeatures = specialFeatures;
+	}
+	
+	public void filmDetails() {
+		System.out.println("Title : " + this.title);
+		System.out.println("Description : " + this.description);
+		System.out.println("Year : " + this.year);
+		System.out.println("Rating : " + this.rating);
+		System.out.println("Language : " + this.languageId);
 	}
 
 

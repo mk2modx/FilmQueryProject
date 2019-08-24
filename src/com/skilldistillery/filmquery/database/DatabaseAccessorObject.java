@@ -105,7 +105,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			ResultSet actorSetResult = stmt.executeQuery();
-			if (actorSetResult.next()) {
+			while (actorSetResult.next()) {
 	
 				int actorId = actorSetResult.getInt("id");
 				String firstName = actorSetResult.getString("first_name");
@@ -138,7 +138,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, actorId);
 			ResultSet filmSetResult = stmt.executeQuery();
-			if (filmSetResult.next()) {
+			while (filmSetResult.next()) {
 	
 				int filmId = filmSetResult.getInt("id");
 			      String title = filmSetResult.getString("title");
