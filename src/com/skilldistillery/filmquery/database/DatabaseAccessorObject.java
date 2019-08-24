@@ -32,9 +32,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Connection conn;
 		try {
 			 conn = DriverManager.getConnection(URL, userName, password); //connect to database
-			 String sql = "SELECT id, title, description, release_year, language_id,"
+			 String sql = "SELECT film.id, title, description, release_year, language_id,"
 			 		+ "rental_duration, rental_rate, length, replacement_cost, "
-			 		+ "rating, special_features  FROM film WHERE id = ?";
+			 		+ "rating, special_features, name FROM film "
+			 		+ "JOIN language ON language.id = film.language_id WHERE film.id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			ResultSet filmResult = stmt.executeQuery();
@@ -44,7 +45,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setTitle(filmResult.getString("title"));
 				film.setDescription(filmResult.getString("description"));
 				film.setYear(filmResult.getInt("release_year"));
-				film.setLanguageId(filmResult.getString("language_id"));
+				film.setLanguageId(filmResult.getString("name"));
 				film.setRentalDuration(filmResult.getInt("rental_duration"));
 				film.setRentalRate(filmResult.getDouble("rental_rate"));
 				film.setLength(filmResult.getInt("length"));
@@ -174,9 +175,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		String search = s;
 		try {
 			 conn = DriverManager.getConnection(URL, userName, password); //connect to database
-			 String sql = "SELECT id, title, description, release_year, language_id,"
+			 String sql = "SELECT film.id, title, description, release_year, language_id,"
 			 		+ " rental_duration, rental_rate, length, replacement_cost, "
-			 		+ " rating, special_features FROM film WHERE description like ?"
+			 		+ " rating, special_features, name FROM film JOIN language ON "
+			 		+ "film.language_id = language.id WHERE description like ?"
 			 				+ " OR title like ?";
 			 
 			 
@@ -191,7 +193,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			      String title = searchResult.getString("title");
 			      String desc = searchResult.getString("description");
 			      int releaseYear = searchResult.getShort("release_year");
-			      String langId = searchResult.getString("language_id");
+			      String langId = searchResult.getString("name");
 			      int rentDur = searchResult.getInt("rental_duration");
 			      double rate = searchResult.getDouble("rental_rate");
 			      int length = searchResult.getInt("length");
