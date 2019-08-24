@@ -1,5 +1,7 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.List;
+
 public class Film {
 	private int id;
 	private String title;
@@ -12,7 +14,6 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
-
 	public Film() {
 		
 	}
