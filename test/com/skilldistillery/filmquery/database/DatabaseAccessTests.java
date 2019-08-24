@@ -1,5 +1,6 @@
 package com.skilldistillery.filmquery.database;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
@@ -26,5 +27,11 @@ class DatabaseAccessTests {
     Film f = db.findFilmById(-42);
     assertNull(f);
   }
+  @Test
+  void test_find_Film_By_Id() {
+	  Film f = db.findFilmById(1);
+	  assertEquals(f.getTitle(), "ACADEMY DINOSAUR");
+  }
+  
 
 }
