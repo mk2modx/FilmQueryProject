@@ -167,5 +167,56 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		 		return films;
 
 	}
+	
+	public List<Film> searchByKeyword(String s) {
+		List <Film> films = new ArrayList<>(); //finding one film , creating an object film
+		Connection conn;
+		String search = s;
+		try {
+			 conn = DriverManager.getConnection(URL, userName, password); //connect to database
+			 String sql = "SELECT id, title, description, release_year, language_id,"
+			 		+ " rental_duration, rental_rate, length, replacement_cost, "
+			 		+ " rating, special_features FROM film WHERE description like ?"
+			 				+ " OR title like ?";
+			 
+			 
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%"+search+"%");
+			stmt.setString(2, "%"+search+"%");
+			ResultSet searchResult = stmt.executeQuery();
+			
+			while (searchResult.next()) {
+				
+				int filmId = searchResult.getInt("id");
+			      String title = searchResult.getString("title");
+			      String desc = searchResult.getString("description");
+			      int releaseYear = searchResult.getShort("release_year");
+			      String langId = searchResult.getString("language_id");
+			      int rentDur = searchResult.getInt("rental_duration");
+			      double rate = searchResult.getDouble("rental_rate");
+			      int length = searchResult.getInt("length");
+			      double repCost = searchResult.getDouble("replacement_cost");
+			      String rating = searchResult.getString("rating");
+			      String features = searchResult.getString("special_features");
+			      
+			      Film film = new Film(filmId, title, desc, releaseYear, langId,
+			                           rentDur, rate, length, repCost, rating, features);
+			      films.add(film);
+				
+			}
+			
+			searchResult.close();
+		    stmt.close();
+		    conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		 
+		
+		return films;
+		
+	}
 
 }

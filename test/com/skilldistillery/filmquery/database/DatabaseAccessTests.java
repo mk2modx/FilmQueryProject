@@ -51,6 +51,14 @@ class DatabaseAccessTests {
 	 
 	  assertEquals("ACADEMY DINOSAUR", films.get(0).getTitle());
   }
+  @Test
+  void test_search_By_Keyword() {
+	  List<Film> f1 = db.searchByKeyword("thrilling");
+	  
+	  assertEquals("ATLANTIS CAUSE", f1.get(0).getTitle());
+  }
+  
+  
   
 
 }
