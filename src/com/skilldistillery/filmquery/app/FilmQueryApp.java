@@ -53,6 +53,7 @@ public class FilmQueryApp {
     	Film film = db.findFilmById(filmId);
     	film.filmDetails();
     	List<Actor> actors = db.findActorsByFilmId(filmId);
+    	System.out.println("\n\nFeatured Cast : ");
     	for (Actor actor : actors) {
 			actor.printCast();
 		}

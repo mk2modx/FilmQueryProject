@@ -164,11 +164,22 @@ public class Film {
 	}
 	
 	public void filmDetails() {
+		
+		System.out.println("---------------------------------------------------------");
+		System.out.println();
 		System.out.println("Title : " + this.title);
 		System.out.println("Description : " + this.description);
 		System.out.println("Year : " + this.year);
 		System.out.println("Rating : " + this.rating);
 		System.out.println("Language : " + this.languageId);
+		List<Actor> actors = db.findActorsByFilmId(this.id);
+    	System.out.println("\n\nFeatured Cast : ");
+    	for (Actor actor : actors) {
+			actor.printCast();
+		}
+    	System.out.println();
+    	System.out.println("--------------------------------------------------------");
+		
 	}
 
 
