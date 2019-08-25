@@ -181,6 +181,27 @@ public class Film {
     	System.out.println("--------------------------------------------------------");
 		
 	}
+	public void allFilmDetails() {
+		
+		System.out.println("---------------------------------------------------------");
+		System.out.println();
+		System.out.println("Title : " + this.title + " (" + this.year+")");
+		System.out.println("Description : " + this.description);
+		System.out.println("Length : " + this.length + " Minutes");
+		System.out.println("Language : " + this.languageId + "\tRated : " + this.rating);
+		System.out.println("Rental Duration : " + this.rentalDuration + " Days");
+		System.out.println("Rental Rate : $" + this.rentalRate);
+		System.out.println("ReplacementCost : $" + this.replacementCost);
+		System.out.println("Special Features : " + this.specialFeatures);
+		List<Actor> actors = db.findActorsByFilmId(this.id);
+		System.out.println("\n\nFeatured Cast : ");
+		for (Actor actor : actors) {
+			actor.printCast();
+		}
+		System.out.println();
+		System.out.println("--------------------------------------------------------");
+		
+	}
 
 
 	@Override
