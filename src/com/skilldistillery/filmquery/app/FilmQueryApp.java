@@ -72,6 +72,7 @@ public class FilmQueryApp {
 						film2.filmDetails();
 
 					}
+					System.out.println(films.size()+" film(s) found, Containing the keyword \""+keyWord+ "\".");
 					if (films.size() == 0) {
 						System.out.println();
 						System.out.println();
